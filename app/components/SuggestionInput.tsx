@@ -1,15 +1,17 @@
 import { Button, Form } from "react-bootstrap";
 
-export default function SuggestionInput() {
+export default function SuggestionInput({ handleSubmit }: any) {
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Label>What image do you want to create?</Form.Label>
         <Form.Control
-          name="query"
+          name="urlquery"
           placeholder="E.g. orange for my dog, lamp stuck in a door, cheese made for ardvarks..."
         />
-        <Button>Generate</Button>
+        <Button type="submit" className="mb-3">
+          Generate
+        </Button>
       </Form.Group>
     </Form>
   );
