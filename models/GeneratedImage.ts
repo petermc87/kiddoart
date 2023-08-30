@@ -1,19 +1,7 @@
 export interface Generate {
-  url: string;
+  b64_json?: string | undefined;
 }
 
 export interface GeneratedResponse {
   data: Generate[];
 }
-
-// {
-//     "created": 1589478378,
-//     "data": [
-//       {
-//         "url": "https://..."
-//       },
-//       {
-//         "url": "https://..."
-//       }
-//     ]
-//   }

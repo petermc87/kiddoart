@@ -1,16 +1,15 @@
 "use client";
 
 import createImage from "@/actions/generatorApi";
+import { Generate } from "@/models/GeneratedImage";
 import { FormEvent, useState } from "react";
-import { Container } from "react-bootstrap";
-import { Generate } from "../models/GeneratedImage";
-import GeneratedImage from "./components/GeneratedImage";
+import { Col, Container, Image } from "react-bootstrap";
 import SuggestionInput from "./components/SuggestionInput";
 import styles from "./page.module.css";
 
 export default function Home() {
   // Url results array. Map this to the Generate types.
-  const [urls, setUrls] = useState<Generate[] | null | void>(null);
+  const [urls, setUrls] = useState<Generate[] | void | null>(null);
 
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -23,9 +22,9 @@ export default function Home() {
     if (urlQuery) {
       try {
         setUrls(null);
-        // TODO: write out the function in the actions folder.
-        const urls = await createImage(urlQuery);
-        setUrls(urls);
+        const results = await createImage(urlQuery);
+        console.log(results);
+        setUrls(results);
       } catch (error) {
         console.error(error);
       } finally {
@@ -40,7 +39,15 @@ export default function Home() {
         <SuggestionInput handleSubmit={handleSubmit} />
       </Container>
       <Container style={{ textAlign: "center" }}>
-        <GeneratedImage />
+        {urls?.map((url) => {
+          // Convert from b64 to url.
+          const converted = `data:image/jped;base64,${url.b64_json}`;
+          return (
+            <Col xs={3} md={4}>
+              <Image key={url.b64_json} src={converted} />
+            </Col>
+          );
+        })}
       </Container>
     </main>
   );

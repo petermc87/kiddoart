@@ -1,4 +1,4 @@
-import { Generate, GeneratedResponse } from "@/models/GeneratedImage";
+import { Generate } from "@/models/GeneratedImage";
 import OpenAI from "openai";
 
 // Create a new openai object and pass in the key.
@@ -22,16 +22,14 @@ export default async function createImage(e: String) {
   try {
     const response = await openai.images.generate({
       prompt: `${urlQuery}`,
-      n: 5,
+      n: 1,
       size: "1024x1024",
       response_format: "b64_json",
     });
 
-    console.log(response);
-    const data: GeneratedResponse = await response;
-    const allUrls: Generate[] = data.data;
+    // const data: GeneratedResponse = response;
+    const allUrls: Generate[] = response.data;
 
-    console.log(allUrls);
     return allUrls;
   } catch (error) {
     console.error(error);
