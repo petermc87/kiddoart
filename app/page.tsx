@@ -59,7 +59,7 @@ export default function Home() {
           const converted = `data:image/jped;base64,${url.b64_json}`;
           return (
             <div className={styles.container}>
-              <Image key={url.b64_json} src={converted} />
+              <Image key={url.b64_json} src={converted} alt="image" />
             </div>
           );
         })}
