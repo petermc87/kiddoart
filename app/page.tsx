@@ -3,13 +3,16 @@
 import createImage from "@/actions/generatorApi";
 import { Generate } from "@/models/GeneratedImage";
 import { FormEvent, useState } from "react";
-import { Col, Container, Image } from "react-bootstrap";
+import { Container, Image, Spinner } from "react-bootstrap";
 import SuggestionInput from "./components/SuggestionInput";
 import styles from "./page.module.css";
 
 export default function Home() {
   // Url results array. Map this to the Generate types.
   const [urls, setUrls] = useState<Generate[] | void | null>(null);
+
+  // Spinner state for generating image.
+  const [creating, setCreating] = useState(false);
 
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -22,8 +25,9 @@ export default function Home() {
     if (urlQuery) {
       try {
         setUrls(null);
+        setCreating(true);
         const results = await createImage(urlQuery);
-        console.log(results);
+        setCreating(false);
         setUrls(results);
       } catch (error) {
         console.error(error);
@@ -38,14 +42,25 @@ export default function Home() {
       <Container style={{ textAlign: "center", maxWidth: "30rem" }}>
         <SuggestionInput handleSubmit={handleSubmit} />
       </Container>
-      <Container style={{ textAlign: "center" }}>
+      <Container
+        style={{ textAlign: "center", maxWidth: "1000px", minWidth: "200px" }}
+      >
+        {/* Spinner will be active when it is searching */}
+        <div className="d-flex flex-column align-items-center">
+          {creating && (
+            <Spinner
+              animation="border"
+              style={{ width: "10rem", height: "10rem" }}
+            />
+          )}
+        </div>
         {urls?.map((url) => {
           // Convert from b64 to url.
           const converted = `data:image/jped;base64,${url.b64_json}`;
           return (
-            <Col xs={3} md={4}>
+            <div className={styles.container}>
               <Image key={url.b64_json} src={converted} />
-            </Col>
+            </div>
           );
         })}
       </Container>
