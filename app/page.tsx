@@ -36,6 +36,11 @@ export default function Home() {
         // Add this when we have more.
       }
     }
+
+    // Add useEffect here to updated state for all images.
+    // These can then be passed as props down to generated images. -> this is to
+    // avoid having to refresh after a new image is added to the db.
+    // Use the SuggestionInput as a guide for passing props.
   }
 
   return (

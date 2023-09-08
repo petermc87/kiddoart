@@ -1,4 +1,4 @@
-export type Image = {
+export type ImageType = {
   prompt: string;
   url: string;
 };

@@ -4,10 +4,10 @@ import S3 from "aws-sdk/clients/s3";
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 import db from "../app/modules/db";
-import { Image } from "../models/typings";
+import { ImageType } from "../models/typings";
 
 // Destructure the props passed into the function.
-export default async function StoreImage({ prompt, url }: Image) {
+export default async function StoreImage({ prompt, url }: ImageType) {
   // Creating S3 instance and connecting to my account.
   const s3 = new S3({
     apiVersion: "2006-03-01",
