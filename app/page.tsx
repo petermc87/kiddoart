@@ -4,6 +4,7 @@ import createImage from "@/actions/generatorApi";
 import { Generate } from "@/models/GeneratedImage";
 import { FormEvent, useState } from "react";
 import { Container, Image, Spinner } from "react-bootstrap";
+import GeneratedImages from "./components/GeneratedImages";
 import SuggestionInput from "./components/SuggestionInput";
 import styles from "./page.module.css";
 
@@ -68,6 +69,7 @@ export default function Home() {
       <br />
       <Container style={{ textAlign: "center", maxWidth: "30rem" }}>
         <h3>Previous Images</h3>
+        <GeneratedImages />
       </Container>
     </main>
   );
