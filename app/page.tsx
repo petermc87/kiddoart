@@ -64,6 +64,11 @@ export default function Home() {
           );
         })}
       </Container>
+      <br />
+      <br />
+      <Container style={{ textAlign: "center", maxWidth: "30rem" }}>
+        <h3>Previous Images</h3>
+      </Container>
     </main>
   );
 }

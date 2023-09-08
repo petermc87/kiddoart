@@ -36,6 +36,7 @@ export default async function StoreImage({ prompt, url }: Image) {
     Bucket: process.env.BUCKET_NAME,
     Body: base64Data,
     ContentEncoding: "base64",
+    ACL: "public-read",
     Key,
     ContentType: `image/${type}`,
   };
@@ -61,34 +62,3 @@ export default async function StoreImage({ prompt, url }: Image) {
 
   console.log(images);
 }
-
-// // Require packages
-// const aws = require("aws-sdk");
-// const multer = require("multer");
-// const multerS3 = require("multer-s3");
-// const uuid = require("uuid").v4;
-// const path = require("path");
-
-// // Create a new object from the Amazon SDK
-// // AWS credentials
-// const s3 = new aws.S3({ apiVersion: "2006-03-01" });
-
-// // Upload to S3 bucket
-// const upload = multer({
-//   storage: multerS3({
-//     s3,
-//     bucket: "kiddoart-images",
-//     metadata: (req: any, file: any, cb: any) => {
-//       cb(null, { fieldName: file.fieldname });
-//     },
-//     key: (req: any, file: any, cb: any) => {
-//       const ext = path.extname(file.originalname);
-//       cb(null, `${uuid()}${ext}`);
-//     },
-//   }),
-// });
-
-// // Passing the image URL into the upload variable.
-// const imageUpload = upload.single(url);
-
-// console.log(imageUpload);

@@ -31,16 +31,7 @@ export default async function createImage(e: string) {
     // Store the url (or many) in the Generate type format.
     const allUrls: Generate[] = response.data;
 
-    // Call another server action within here
-    // 1. Create a function call that instigates a 'storeImage' server action.
-    // 2. Pass in URL & Prompt.
-    //    a) check if ID needs to be stored or if its automatic (symptologix). - its auto
-    //    b) convert the URL from b64 to a string.
-
-    // Check the data coming back and save the url string
-    // const url = `data:image/jpeg;base64,${allUrls[0].b64_json}`;
-
-    const url = `${allUrls[0]}`;
+    const url = `data:image/jpeg;base64,${allUrls[0].b64_json}`;
 
     // Pass props into store image function
     StoreImage({ url, prompt });
