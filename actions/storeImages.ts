@@ -59,6 +59,4 @@ export default async function StoreImage({ prompt, url }: ImageType) {
 
   // Test data storing by retrieving from the database.
   const images = await db.image.findMany({ orderBy: { createdAt: "desc" } });
-
-  console.log(images);
 }

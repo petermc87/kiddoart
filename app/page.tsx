@@ -2,6 +2,7 @@
 
 import createImage from "@/actions/generatorApi";
 import { Generate } from "@/models/GeneratedImage";
+import { revalidatePath } from "next/cache";
 import { FormEvent, useState } from "react";
 import { Container, Image, Spinner } from "react-bootstrap";
 import GeneratedImages from "./components/GeneratedImages";
@@ -30,6 +31,7 @@ export default function Home() {
         const results = await createImage(urlQuery);
         setCreating(false);
         setUrls(results);
+        revalidatePath("/");
       } catch (error) {
         console.error(error);
       } finally {
