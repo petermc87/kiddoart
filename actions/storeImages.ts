@@ -2,7 +2,6 @@
 "use server";
 import S3 from "aws-sdk/clients/s3";
 import { randomUUID } from "crypto";
-import { revalidatePath } from "next/cache";
 import db from "../app/modules/db";
 import { ImageType } from "../models/typings";
 
@@ -55,8 +54,6 @@ export default async function StoreImage({ prompt, url }: ImageType) {
       prompt: prompt,
     },
   });
-  revalidatePath("/");
-
   // Test data storing by retrieving from the database.
   const images = await db.image.findMany({ orderBy: { createdAt: "desc" } });
 }
