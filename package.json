@@ -13,7 +13,7 @@
     "db:migrate": "TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\"}' knex migrate:latest",
     "db:migrate:undo": "TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\"}' knex migrate:down",
     "db:migrate:make": "TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\"}' knex migrate:make",
-    "vercel-build": "prisma generate && npm run db:migrate deploy && next build"
+    "vercel-build": "prisma generate && npm run db:migrate && next build"
   },
   "dependencies": {
     "@prisma/client": "^5.2.0",
