@@ -4,9 +4,13 @@ import S3 from "aws-sdk/clients/s3";
 import { randomUUID } from "crypto";
 import db from "../app/modules/db";
 import { ImageType } from "../models/typings";
+import getAllImages from "./getAllImagesApi";
 
 // Destructure the props passed into the function.
 export default async function StoreImage({ prompt, url }: ImageType) {
+  // Test data storing by retrieving from the database.
+  await db.image.findMany({ orderBy: { createdAt: "desc" } });
+
   // Creating S3 instance and connecting to my account.
   const s3 = new S3({
     apiVersion: "2006-03-01",
@@ -45,8 +49,6 @@ export default async function StoreImage({ prompt, url }: ImageType) {
   const location = Location;
   const key = returnKey;
 
-  console.log(location, key);
-
   // Posting to the database
   await db.image.create({
     data: {
@@ -54,6 +56,6 @@ export default async function StoreImage({ prompt, url }: ImageType) {
       prompt: prompt,
     },
   });
-  // Test data storing by retrieving from the database.
-  const images = await db.image.findMany({ orderBy: { createdAt: "desc" } });
+
+  getAllImages();
 }
