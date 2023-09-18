@@ -36,6 +36,10 @@ export default async function createImage(e: string) {
     // Pass props into store image function
     StoreImage({ url, prompt });
 
+    // // Call the get all images method and pass it into state.
+    // const allImages = getAllImages();
+    // setAllImages(allImages);
+
     return allUrls;
   } catch (error) {
     console.error(error);

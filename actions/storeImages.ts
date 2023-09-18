@@ -4,7 +4,6 @@ import S3 from "aws-sdk/clients/s3";
 import { randomUUID } from "crypto";
 import db from "../app/modules/db";
 import { ImageType } from "../models/typings";
-import getAllImages from "./getAllImagesApi";
 
 // Destructure the props passed into the function.
 export default async function StoreImage({ prompt, url }: ImageType) {
@@ -45,9 +44,8 @@ export default async function StoreImage({ prompt, url }: ImageType) {
   };
 
   // @ts-expect-error
-  const { Location, returnKey } = await s3.upload(s3Params).promise();
+  const { Location } = await s3.upload(s3Params).promise();
   const location = Location;
-  const key = returnKey;
 
   // Posting to the database
   await db.image.create({
@@ -56,6 +54,4 @@ export default async function StoreImage({ prompt, url }: ImageType) {
       prompt: prompt,
     },
   });
-
-  getAllImages();
 }
