@@ -14,14 +14,14 @@ export default function Home() {
   // Url results array. Map this to the Generate types.
   const [urls, setUrls] = useState<Generate[] | void | null>(null);
 
-  const [allImages, setAllImages] = useState<ImageType[] | void | null | any>(
-    null
-  );
-
   // Spinner state for generating image.
   const [creating, setCreating] = useState(false);
 
   // 1. Create a state variable for all images here.
+
+  const [allImages, setAllImages] = useState<ImageType[] | void | null | any>(
+    null
+  );
 
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
