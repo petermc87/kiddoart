@@ -72,38 +72,60 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={styles.main} style={{ padding: "2rem" }}>
-      {/* 2 .. Suggestion input is where the images get called. */}
-      {/* The response is then stored in a state variable and then passed  */}
-      {/* down as props to generated images. */}
-      <Container style={{ textAlign: "center", maxWidth: "30rem" }}>
-        <SuggestionInput handleSubmit={handleSubmit} />
-      </Container>
+    <main
+      className={styles.main}
+      style={{ padding: "2rem", maxWidth: "100vw" }}
+    >
+      {/* Hero image, generated image and prompt container. */}
       <Container
-        style={{ textAlign: "center", maxWidth: "1000px", minWidth: "200px" }}
+        style={{
+          textAlign: "center",
+          maxWidth: "1000px",
+          minWidth: "200px",
+          flexDirection: "column",
+        }}
       >
-        {/* Spinner will be active when it is searching */}
-        <div className="d-flex flex-column align-items-center">
-          {creating && (
-            <Spinner
-              animation="border"
-              style={{ width: "10rem", height: "10rem" }}
-            />
+        {/* <HeroImage /> */}
+        <Container
+          style={{ textAlign: "center", maxWidth: "30rem", minHeight: "45rem" }}
+        >
+          <SuggestionInput handleSubmit={handleSubmit} />
+        </Container>
+        <Container
+          style={{ textAlign: "center", maxWidth: "1000px", minWidth: "200px" }}
+        >
+          {/* Spinner will be active when it is searching */}
+          <div className="d-flex flex-column align-items-center">
+            {creating && (
+              <Spinner
+                animation="border"
+                style={{ width: "10rem", height: "10rem" }}
+              />
+            )}
+          </div>
+          {urls ? (
+            urls?.map((url) => {
+              // Convert from b64 to url.
+              const converted = `data:image/jpeg;base64,${url.b64_json}`;
+              return (
+                <div className={styles.container} key={url.b64_json}>
+                  <Image
+                    key={url.b64_json}
+                    src={converted}
+                    alt="image"
+                    rounded
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <h5 color="gray">No image to display yet</h5>
           )}
-        </div>
-        {urls?.map((url) => {
-          // Convert from b64 to url.
-          const converted = `data:image/jpeg;base64,${url.b64_json}`;
-          return (
-            <div className={styles.container} key={url.b64_json}>
-              <Image key={url.b64_json} src={converted} alt="image" />
-            </div>
-          );
-        })}
+        </Container>
       </Container>
       <br />
       <br />
-      <Container style={{ textAlign: "center", maxWidth: "30rem" }}>
+      <Container style={{ textAlign: "center", maxWidth: "85rem" }}>
         <h3>Previous Images</h3>
         <GeneratedImages images={allImages} />
       </Container>

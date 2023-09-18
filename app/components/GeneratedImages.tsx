@@ -1,7 +1,6 @@
 import { ImageType } from "@/models/typings";
-import { Image } from "react-bootstrap";
-import styles from "../page.module.css";
-import componentStyle from "./GeneratedImages.module.css";
+import { Card, Col, Image, Row } from "react-bootstrap";
+import styles from "./GeneratedImages.module.css";
 
 type AllImagesProps = {
   images: ImageType[];
@@ -10,25 +9,45 @@ type AllImagesProps = {
 export default function GeneratedImages({ images }: AllImagesProps) {
   return (
     <>
-      {/* Placholder - create separate component */}
-      {images
-        ? images &&
-          images.map((image: any) => {
-            return (
-              <>
-                <div
-                  className={styles.container}
-                  key={image.id}
-                  id={componentStyle.container}
-                >
-                  <p>{image.prompt}</p>
-                  <Image key={image.id} src={image.url} alt="images" />
-                </div>
-                <br />
-              </>
-            );
-          })
-        : ""}
+      {images ? (
+        <>
+          <Row
+            style={{ maxWidth: "100vw" }}
+            xs={1}
+            sm={2}
+            xl={3}
+            xxl={4}
+            className="g-4"
+          >
+            {images.map((image: any) => {
+              return (
+                <Col key={image.url}>
+                  <Card className="h-100">
+                    <Card.Body>
+                      <Card.Title style={{ font: "cursive" }}>
+                        Prompt
+                      </Card.Title>
+                      <Card.Text style={{ color: "black" }}>
+                        {image.prompt}
+                      </Card.Text>
+                    </Card.Body>
+
+                    <Image
+                      src={image.url}
+                      key={image.id}
+                      alt="image"
+                      rounded
+                      className={`card-img-top ${styles.image}`}
+                    />
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 }
