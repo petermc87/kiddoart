@@ -5,10 +5,34 @@
 
 body {
   background: radial-gradient(
-    circle at 100%,
+    circle at 60%,
     #eee,
     #eee 20%,
-    #eee 90%,
-    #333 75%
+    #ece1f6 90%,
+    #51396a 75%
   );
+}
+
+@media only screen and (max-width: 390px) {
+  body {
+    background: radial-gradient(
+      circle at 50%,
+      #eee,
+      #eee 20%,
+      #ece1f6 92%,
+      #51396a 75%
+    );
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  body {
+    background: radial-gradient(
+      circle at 50%,
+      #eee,
+      #eee 20%,
+      #ece1f6 80%,
+      #51396a 75%
+    );
+  }
 }
