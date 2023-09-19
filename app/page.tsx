@@ -95,14 +95,14 @@ export default function Home() {
           style={{ textAlign: "center", maxWidth: "1000px", minWidth: "200px" }}
         >
           {/* Spinner will be active when it is searching */}
-          <div className="d-flex flex-column align-items-center">
-            {creating && (
-              <Spinner
-                animation="border"
-                style={{ width: "10rem", height: "10rem" }}
-              />
-            )}
-          </div>
+          {/* <div className="d-flex flex-column align-items-center"> */}
+          {creating && (
+            <Spinner
+              animation="border"
+              style={{ width: "10rem", height: "10rem" }}
+            />
+          )}
+          {/* </div> */}
           {urls ? (
             urls?.map((url) => {
               // Convert from b64 to url.

@@ -1,33 +1,24 @@
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import styles from "./button.module.css";
 
 export default function SuggestionInput({ handleSubmit }: any) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group>
-        {/* <div
-          style={{
-            alignItems: "center",
-
-            maxWidth: "1000px",
-            minWidth: "200px",
-            position: "relative",
-          }}
-        >
-          <div className={styles.content}>
-            <div>KiddoArt</div>
-            <div>KiddoArt</div>
-          </div>
-        </div> */}
-        <Form.Label className="mb-3">
+        <Form.Label className="mb-4">
           What image do you want to create?
         </Form.Label>
         <Form.Control
           name="urlquery"
           placeholder="E.g. orange for my dog, lamp stuck in a door, cheese made for ardvarks..."
+          className="mb-4"
         />
-        <Button type="submit" className="mb-3">
+        <button type="submit" className={styles.button} role="button">
           Generate
-        </Button>
+        </button>
+        {/* <Button type="submit" className="mb-4">
+          Generate
+        </Button> */}
       </Form.Group>
     </Form>
   );
