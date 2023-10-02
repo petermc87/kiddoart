@@ -16,6 +16,8 @@ Kiddoart is an image generation application used for young toddler education. It
 
 ## Getting Started
 
+Follow the live link to the application [here](https://kiddoart.vercel.app/)
+
 ## Planning
 
 ### High Fidelity Wireframes
@@ -45,3 +47,5 @@ Kiddoart is an image generation application used for young toddler education. It
 4.  [ESLint Changelog](https://github.com/conventional-changelog/commitlint)
 
 5.  [Wireframes](https://lucid.app/lucidchart/0d1b57af-04a3-43fa-8717-03812278a9fb/edit?viewport_loc=-234%2C-934%2C3336%2C3558%2C0_0&invitationId=inv_4f9a9ecd-5788-4f28-99b5-6992b22aa47f)
+
+6.  [Color Palette](https://coolors.co/668586-82aeb1-57ad5a-a7acd9-9e8fb2)
