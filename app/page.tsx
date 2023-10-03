@@ -99,7 +99,7 @@ export default function Home() {
 
         {/* INPUT CONTAINER */}
         <Container
-          style={{ textAlign: "center", maxWidth: "30rem", minHeight: "45rem" }}
+          style={{ textAlign: "center", maxWidth: "35rem", minHeight: "45rem" }}
         >
           <SuggestionInput handleSubmit={handleSubmit} />
         </Container>

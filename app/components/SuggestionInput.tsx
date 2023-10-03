@@ -18,9 +18,11 @@ export default function SuggestionInput({ handleSubmit }: any) {
             borderBottom: "solid #d2a800",
             textAlign: "center",
             color: " solid #d2a800",
-            padding: "0.5rem",
+            padding: "0.6rem",
           }}
+          required
         />
+
         <GeneralButton />
       </Form.Group>
     </Form>
