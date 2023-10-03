@@ -6,6 +6,7 @@ import { Generate } from "@/models/GeneratedImage";
 import { ImageType } from "@/models/typings";
 import { FormEvent, useEffect, useState } from "react";
 import { Container, Image, Spinner } from "react-bootstrap";
+import Footer from "./components/Footer/Footer";
 import GeneratedImages from "./components/GeneratedImages";
 import Logo from "./components/Logo/Logo";
 import SuggestionInput from "./components/SuggestionInput";
@@ -99,14 +100,24 @@ export default function Home() {
 
         {/* INPUT CONTAINER */}
         <Container
-          style={{ textAlign: "center", maxWidth: "35rem", minHeight: "45rem" }}
+          style={{
+            textAlign: "center",
+            maxWidth: "35rem",
+          }}
+          className="mb-5"
         >
           <SuggestionInput handleSubmit={handleSubmit} />
         </Container>
 
         {/* SPINNER AND IMAGE CONTAINER. */}
         <Container
-          style={{ textAlign: "center", maxWidth: "1000px", minWidth: "200px" }}
+          style={{
+            textAlign: "center",
+            maxWidth: "1000px",
+            minWidth: "200px",
+            alignItems: "center",
+          }}
+          className="mb-5"
         >
           {/* Spinner will be active when it is searching */}
           {creating && (
@@ -120,14 +131,17 @@ export default function Home() {
               // Convert from b64 to url.
               const converted = `data:image/jpeg;base64,${url.b64_json}`;
               return (
-                <div className={styles.container} key={url.b64_json}>
-                  <Image
-                    key={url.b64_json}
-                    src={converted}
-                    alt="image"
-                    rounded
-                  />
-                </div>
+                <>
+                  <h4 color="gray">Current Image</h4>
+                  <div className={styles.container} key={url.b64_json}>
+                    <Image
+                      key={url.b64_json}
+                      src={converted}
+                      alt="image"
+                      rounded
+                    />
+                  </div>
+                </>
               );
             })
           ) : (
@@ -139,9 +153,15 @@ export default function Home() {
       <br />
 
       {/* ALL PREVIOUS IMAGES */}
-      <Container style={{ textAlign: "center", maxWidth: "85rem" }}>
+      <Container
+        className="mb-5"
+        style={{ textAlign: "center", maxWidth: "85rem" }}
+      >
         <h3>Previous Images</h3>
         <GeneratedImages images={allImages} />
+      </Container>
+      <Container style={{ textAlign: "center" }}>
+        <Footer />
       </Container>
     </main>
   );
