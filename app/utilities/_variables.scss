@@ -1,3 +1,7 @@
+// Font Import
+@import url("https://fonts.cdnfonts.com/css/sf-wonder-comic");
+@import url("https://fonts.cdnfonts.com/css/cousine");
+
 // Colors
 $dark-gold: #c28e38;
 $bright-gold: #e0a738;
@@ -32,5 +36,10 @@ $button-radius: 12px;
 $input-radius: 10px;
 
 // Font Size
-$logo-size: 3rem;
+$logo-size: 4rem;
 $heading-size: 2rem;
+
+// Font Families
+$logo-font-family: "SF Wonder Comic Inline", sans-serif;
+
+$general-font-family: "Cousine", sans-serif;

@@ -1,0 +1,30 @@
+@use "../../utilities/variables" as var;
+
+.logo {
+  span {
+    font-family: var.$logo-font-family;
+    font-size: var.$logo-size;
+  }
+  #k {
+    color: var.$k;
+  }
+  #i {
+    color: var.$i;
+  }
+  #d_1 {
+    color: var.$d-1;
+  }
+  #d_2,
+  #o {
+    color: var.$d-2_o;
+  }
+  #a {
+    color: var.$a;
+  }
+  #r {
+    color: var.$r;
+  }
+  #t {
+    color: var.$t;
+  }
+}

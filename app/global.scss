@@ -1,0 +1,5 @@
+@use "./utilities/variables" as var;
+* {
+  // The font family everywhere is the same. Except, the button(s).
+  font-family: var.$general-font-family;
+}

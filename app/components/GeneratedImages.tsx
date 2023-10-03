@@ -31,7 +31,6 @@ export default function GeneratedImages({ images }: AllImagesProps) {
                         {image.prompt}
                       </Card.Text>
                     </Card.Body>
-
                     <Image
                       src={image.url}
                       key={image.id}

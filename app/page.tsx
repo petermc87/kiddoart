@@ -7,6 +7,7 @@ import { ImageType } from "@/models/typings";
 import { FormEvent, useEffect, useState } from "react";
 import { Container, Image, Spinner } from "react-bootstrap";
 import GeneratedImages from "./components/GeneratedImages";
+import Logo from "./components/Logo/Logo";
 import SuggestionInput from "./components/SuggestionInput";
 import styles from "./page.module.css";
 
@@ -85,24 +86,35 @@ export default function Home() {
           flexDirection: "column",
         }}
       >
-        {/* <HeroImage /> */}
+        <Container
+          style={{
+            textAlign: "center",
+            maxWidth: "30rem",
+            minHeight: "10rem",
+            alignItems: "center",
+          }}
+        >
+          <Logo />
+        </Container>
+
+        {/* INPUT CONTAINER */}
         <Container
           style={{ textAlign: "center", maxWidth: "30rem", minHeight: "45rem" }}
         >
           <SuggestionInput handleSubmit={handleSubmit} />
         </Container>
+
+        {/* SPINNER AND IMAGE CONTAINER. */}
         <Container
           style={{ textAlign: "center", maxWidth: "1000px", minWidth: "200px" }}
         >
           {/* Spinner will be active when it is searching */}
-          {/* <div className="d-flex flex-column align-items-center"> */}
           {creating && (
             <Spinner
               animation="border"
               style={{ width: "10rem", height: "10rem" }}
             />
           )}
-          {/* </div> */}
           {urls ? (
             urls?.map((url) => {
               // Convert from b64 to url.
@@ -125,6 +137,8 @@ export default function Home() {
       </Container>
       <br />
       <br />
+
+      {/* ALL PREVIOUS IMAGES */}
       <Container style={{ textAlign: "center", maxWidth: "85rem" }}>
         <h3>Previous Images</h3>
         <GeneratedImages images={allImages} />

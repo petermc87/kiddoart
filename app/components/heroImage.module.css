@@ -8,11 +8,9 @@ EDIT ON */
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   display: flex;
-  /* background: #000; */
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  /* border: solid red; */
 }
 
 .content {
@@ -20,16 +18,6 @@ EDIT ON */
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  /* display: flex; */
-  /* background: #000; */
-  /* min-height: 100vh; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* position: relative; */
-  /* display: flex; */
-  /* width: 100%; */
-  /* border: solid gray; */
-  /* left: 10rem; */
 }
 
 .content div {
