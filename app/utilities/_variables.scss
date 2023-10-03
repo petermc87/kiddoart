@@ -39,7 +39,14 @@ $input-radius: 10px;
 $logo-size: 4rem;
 $heading-size: 2rem;
 
+// Button
+$button-font-color: #{$off-gold};
+$button-border-color: #{$off-gold};
+$button-background-color: #{$very-light-blue};
+$button-radius: 1.33rem;
+$button-padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+$button-border-width: 3px;
+
 // Font Families
 $logo-font-family: "SF Wonder Comic Inline", sans-serif;
-
 $general-font-family: "Cousine", sans-serif;

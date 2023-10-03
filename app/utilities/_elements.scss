@@ -1,5 +1,16 @@
 @use "./variables" as var;
 
+// General heading styles for the current image begin viewed and previous images.
 %headingStyles {
   // font-family: ;
+}
+
+%buttonStyles {
+  all: unset;
+  color: var.$button-font-color;
+  border: solid var.$button-border-color;
+  background-color: var.$button-background-color;
+  border-radius: var.$button-radius;
+  padding: var.$button-padding;
+  border-width: var.$button-border-width;
 }

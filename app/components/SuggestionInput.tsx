@@ -1,21 +1,27 @@
 import { Form } from "react-bootstrap";
-import styles from "./button.module.css";
-
+import GeneralButton from "./Button/GeneralButton";
+import styles from "./Suggestion.module.scss";
 export default function SuggestionInput({ handleSubmit }: any) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group>
-        {/* <Form.Label className="mb-4">
-          What image do you want to create?
-        </Form.Label> */}
         <Form.Control
+          id={styles.input}
           name="urlquery"
-          placeholder="E.g. orange for my dog, lamp stuck in a door, cheese made for ardvarks..."
-          className="mb-4"
+          placeholder="Type what you want to create here..."
+          className="mb-5"
+          style={{
+            borderRadius: "5px 5px 0 0",
+            borderTop: "solid #ffffff",
+            borderLeft: "solid #ffffff",
+            borderRight: "solid #ffffff",
+            borderBottom: "solid #d2a800",
+            textAlign: "center",
+            color: " solid #d2a800",
+            padding: "0.5rem",
+          }}
         />
-        <button type="submit" className={styles.button} role="button">
-          Generate
-        </button>
+        <GeneralButton />
       </Form.Group>
     </Form>
   );

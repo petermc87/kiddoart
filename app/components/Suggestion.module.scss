@@ -1,0 +1,8 @@
+@use "../utilities/variables" as var;
+
+#input:focus {
+  box-shadow: none;
+  background-color: var.$very-light-blue;
+  border-bottom: solid var.$blue;
+  color: var.$dark-gold;
+}

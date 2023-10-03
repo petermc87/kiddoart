@@ -1,5 +1,9 @@
-import { Button } from "react-bootstrap";
+import styles from "./GeneralButton.module.scss";
 
 export default function GeneralButton() {
-  return <Button>Generate</Button>;
+  return (
+    <button type="submit" className={styles.button}>
+      Generate
+    </button>
+  );
 }
