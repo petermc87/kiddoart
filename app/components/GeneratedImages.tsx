@@ -42,14 +42,15 @@ export default function GeneratedImages({ images }: AllImagesProps) {
                   // FIX: it is showing the all the images bar the last one.
                   // It starts off with 8, then increments by 4.
                   <Col key={image.url}>
-                    <Card className="h-100">
+                    <Card
+                      className="h-100"
+                      id={styles.card}
+                      style={{ boxShadow: "0 0 10px 1px rgb(202, 202, 202)" }}
+                    >
                       <Card.Body>
                         <Card.Title style={{ font: "cursive" }}>
-                          Prompt
-                        </Card.Title>
-                        <Card.Text style={{ color: "black" }}>
                           {image.prompt}
-                        </Card.Text>
+                        </Card.Title>
                       </Card.Body>
                       <Image
                         src={image.url}

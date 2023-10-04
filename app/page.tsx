@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import GeneratedImages from "./components/GeneratedImages";
 import Logo from "./components/Logo/Logo";
 import SuggestionInput from "./components/SuggestionInput";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 export default function Home() {
   // Url results array. Map this to the Generate types.
@@ -25,6 +25,9 @@ export default function Home() {
     null
   );
 
+  // Add query state so it can be passed into the viewed image component.
+  const [imagePrompt, setImagePrompt] = useState<string | undefined>("");
+
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,6 +35,9 @@ export default function Home() {
     const data = new FormData(e.target as HTMLFormElement);
     const urlQuery = data.get("urlquery")?.toString().trim();
 
+    // Set the curren prompt to be rendered to the screen
+
+    setImagePrompt(urlQuery);
     // Performing fetch if it exists.
     if (urlQuery) {
       try {
@@ -128,11 +134,14 @@ export default function Home() {
           )}
           {urls ? (
             urls?.map((url) => {
+              // Pass down appropriate state variables to an image component.
               // Convert from b64 to url.
               const converted = `data:image/jpeg;base64,${url.b64_json}`;
               return (
                 <>
-                  <h4 color="gray">Current Image</h4>
+                  <h4 className={styles.heading}>Current Image</h4>
+                  <strong>Prompt: </strong>
+                  {imagePrompt}
                   <div className={styles.container} key={url.b64_json}>
                     <Image
                       key={url.b64_json}
@@ -157,7 +166,8 @@ export default function Home() {
         className="mb-5"
         style={{ textAlign: "center", maxWidth: "85rem" }}
       >
-        <h3>Previous Images</h3>
+        <h3 className={styles.heading}>Choose from Previously Generated</h3>
+        <br />
         <GeneratedImages images={allImages} />
       </Container>
       <Container style={{ textAlign: "center" }}>

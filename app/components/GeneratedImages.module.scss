@@ -26,8 +26,6 @@
   height: 0.8rem;
   width: 4rem;
   border-radius: 10px;
-
-  // border: solid black;
 }
 .chevronDown:before {
   content: "";
@@ -69,4 +67,9 @@
   width: 50%;
   background: var.$off-gold;
   transform: skew(0deg, 20deg);
+}
+
+#card:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
