@@ -1,0 +1,18 @@
+@use "../../utilities/elements";
+@use "../../utilities/variables" as var;
+
+.container > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.container {
+  display: flex;
+}
+
+.heading {
+  @extend %headingStyles;
+}
+
+.image {
+  box-shadow: var.$div-shodow;
+}

@@ -1,13 +1,19 @@
 import { ImageType } from "@/models/typings";
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { Card, Col, Image, Row } from "react-bootstrap";
 import styles from "./GeneratedImages.module.scss";
 
 type AllImagesProps = {
   images: ImageType[];
+  setPrompt: Dispatch<SetStateAction<string | void | undefined>>;
+  setImage: Dispatch<SetStateAction<string | void | null | undefined>>;
 };
 
-export default function GeneratedImages({ images }: AllImagesProps) {
+export default function GeneratedImages({
+  images,
+  setImage,
+  setPrompt,
+}: AllImagesProps) {
   // Create a state the stores the number of images to index.
   //  This will mean that it will only render 8 at a time. When the chevron at
   //  the bottom of the screen is clicked, 8 is added to the state, therefore
@@ -16,6 +22,13 @@ export default function GeneratedImages({ images }: AllImagesProps) {
 
   // Create a useRef to get the previous value.
   const prevValue = useRef(0);
+
+  // Create a handler function for viewing the image selected.
+  const handleView = (url: string, prompt: string, e: any) => {
+    e.preventDefault();
+    setImage(url);
+    setPrompt(prompt);
+  };
 
   return (
     <>
@@ -32,7 +45,7 @@ export default function GeneratedImages({ images }: AllImagesProps) {
             {images.map((image: any, i) => {
               // Create a separate component for the image.
               // To create the
-
+              // console.log(image);
               if (i < numOfImages) {
                 return (
                   // If the current index (i) is less than or equal to the state
@@ -46,6 +59,7 @@ export default function GeneratedImages({ images }: AllImagesProps) {
                       className="h-100"
                       id={styles.card}
                       style={{ boxShadow: "0 0 10px 1px rgb(202, 202, 202)" }}
+                      onClick={(e) => handleView(image.url, image.prompt, e)}
                     >
                       <Card.Body>
                         <Card.Title style={{ font: "cursive" }}>

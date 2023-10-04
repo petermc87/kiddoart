@@ -5,28 +5,30 @@ import getAllImages from "@/actions/getAllImagesApi";
 import { Generate } from "@/models/GeneratedImage";
 import { ImageType } from "@/models/typings";
 import { FormEvent, useEffect, useState } from "react";
-import { Container, Image, Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import Footer from "./components/Footer/Footer";
 import GeneratedImages from "./components/GeneratedImages";
+import ImageContainer from "./components/ImageContainer/ImageContainer";
 import Logo from "./components/Logo/Logo";
 import SuggestionInput from "./components/SuggestionInput";
 import styles from "./page.module.scss";
 
 export default function Home() {
-  // Url results array. Map this to the Generate types.
-  const [urls, setUrls] = useState<Generate[] | void | null>(null);
-
   // Spinner state for generating image.
   const [creating, setCreating] = useState(false);
 
   // 1. Create a state variable for all images here.
-
   const [allImages, setAllImages] = useState<ImageType[] | void | null | any>(
     null
   );
 
   // Add query state so it can be passed into the viewed image component.
-  const [imagePrompt, setImagePrompt] = useState<string | undefined>("");
+  const [imagePrompt, setImagePrompt] = useState<string | undefined | void>("");
+
+  // Add state for current viewing image.
+  const [currentImage, setCurrentImage] = useState<
+    string | undefined | void | null
+  >("");
 
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -41,13 +43,27 @@ export default function Home() {
     // Performing fetch if it exists.
     if (urlQuery) {
       try {
-        setUrls(null);
+        setCurrentImage(null);
         setCreating(true);
         const results = await createImage(urlQuery);
         setCreating(false);
-        // The url of the image generated. NOTE this is plural because
-        // the original thought was to have multiple images generated at once.
-        setUrls(results);
+
+        // Set the urls to Generate type, then pull out the url.
+        const arrayData: Generate[] | void | null = results;
+
+        // TS error will show up if you check for an index in an array that hasnt been
+        // generated yet!
+        if (arrayData) {
+          // Pull out the url.
+          const imageData: string | undefined | void = arrayData[0].b64_json;
+          // Convert it to a JPEG.
+          const convertedUrl = `data:image/jpeg;base64,${imageData}`;
+          // console.log(convertedUrl);
+          setCurrentImage(convertedUrl);
+        }
+
+        // TASK: Check the difference between the url coming back and a single url
+        // image from the list of images.
 
         // Make another call to the database for all the images again.
         const images = await getAllImages();
@@ -132,27 +148,11 @@ export default function Home() {
               style={{ width: "10rem", height: "10rem" }}
             />
           )}
-          {urls ? (
-            urls?.map((url) => {
-              // Pass down appropriate state variables to an image component.
-              // Convert from b64 to url.
-              const converted = `data:image/jpeg;base64,${url.b64_json}`;
-              return (
-                <>
-                  <h4 className={styles.heading}>Current Image</h4>
-                  <strong>Prompt: </strong>
-                  {imagePrompt}
-                  <div className={styles.container} key={url.b64_json}>
-                    <Image
-                      key={url.b64_json}
-                      src={converted}
-                      alt="image"
-                      rounded
-                    />
-                  </div>
-                </>
-              );
-            })
+          {currentImage ? (
+            <>
+              {/* Pass down the url, converted, imagePrompt */}
+              <ImageContainer url={currentImage} imagePrompt={imagePrompt} />
+            </>
           ) : (
             <h5 color="gray">No image to display yet</h5>
           )}
@@ -168,7 +168,11 @@ export default function Home() {
       >
         <h3 className={styles.heading}>Choose from Previously Generated</h3>
         <br />
-        <GeneratedImages images={allImages} />
+        <GeneratedImages
+          images={allImages}
+          setPrompt={setImagePrompt}
+          setImage={setCurrentImage}
+        />
       </Container>
       <Container style={{ textAlign: "center" }}>
         <Footer />

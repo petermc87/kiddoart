@@ -12,7 +12,7 @@
   margin-top: 1rem;
   border-radius: 5px;
   background-color: var.$very-light-blue;
-  box-shadow: 0 0 10px 1px rgb(202, 202, 202);
+  box-shadow: var.$div-shodow;
 }
 .chevronWrapper:hover {
   opacity: 0.5;
