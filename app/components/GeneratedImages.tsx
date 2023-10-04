@@ -110,69 +110,15 @@ export default function GeneratedImages({ images }: AllImagesProps) {
           }
         }}
       >
-        {/* We check to see if the value in state is the same as the value
-        of length. If thats the case, then change the arrow.*/}
+        {/* Use the same conditional logic as in the click funtion.*/}
         {images &&
-        images.length - 1 === numOfImages &&
-        prevValue.current + 1 > numOfImages ? (
-          <div className={styles.chevronUp}>Up</div>
-        ) : (
+        images.length > numOfImages &&
+        prevValue.current < numOfImages ? (
           <div className={styles.chevronDown}></div>
+        ) : (
+          <div className={styles.chevronUp}></div>
         )}
       </div>
     </>
   );
 }
-
-// PREVIOUS ALOGORITM FOR CHEVRON UP AND DOWN.
-
-// console.log(
-//   "current values being checked: ",
-//   prevValue.current,
-//   numOfImages
-// );
-
-// if (
-//   images &&
-//   images.length - 1 === numOfImages &&
-//   prevValue.current > numOfImages - 1
-// ) {
-//   setDirection("up");
-//   console.log(direction);
-//   // Up direction.
-//   // Maybe use modulo to find the remainder is different to 4. If it is, then
-//   // negative the remainder
-//   // console.log(images.length % 4);
-//   if (images && images.length % 4 < 4) {
-//     // Negate the remainder.
-//     setNumOfImages(numOfImages - (images.length - numOfImages));
-//     // Then do a checker - is the current state
-//   } else {
-//     setNumOfImages(numOfImages - 4);
-//   }
-// } else {
-//   setDirection("down");
-
-//   console.log(direction);
-//   //
-//   // Here, we create a conditional to check if there is less than 4 left.
-//   // If thats the case, then add the remander.
-//   if (images.length - numOfImages < 4) {
-//     // This is if the number of images is uneven, we have to render a number
-//     // different to 4.
-//     setNumOfImages(numOfImages + (images.length - numOfImages));
-//   } else {
-//     setNumOfImages(numOfImages + 4);
-//   }
-// }
-
-// PREVIOUS ELSE IF FOR UP DIR.
-// else if (
-//   images &&
-//   images.length === numOfImages &&
-//   prevValue.current + 1 > numOfImages
-// ) {
-//   console.log(`Current Direction: ${direction}`);
-//   setDirection("up");
-//   setNumOfImages(numOfImages - 4);
-// }
