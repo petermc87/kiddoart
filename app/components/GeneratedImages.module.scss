@@ -1,0 +1,49 @@
+@use "../utilities/variables" as var;
+
+.image {
+  object-fit: cover;
+  height: 100%;
+}
+
+.chevronWrapper {
+  justify-content: center;
+  display: flex;
+  padding: 0.8em 0.4rem 0.4rem 0.4rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  background-color: var.$very-light-blue;
+  box-shadow: 0 0 10px 1px rgb(202, 202, 202);
+}
+.chevronWrapper:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.chevron {
+  position: relative;
+  text-align: center;
+  margin-bottom: 6px;
+  height: 0.8rem;
+  width: 4rem;
+  border-radius: 10px;
+  // border: solid black;
+}
+.chevron:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 51%;
+  background: var.$off-gold;
+  transform: skew(0deg, 20deg);
+}
+.chevron:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  background: var.$off-gold;
+  transform: skew(0deg, -20deg);
+}
