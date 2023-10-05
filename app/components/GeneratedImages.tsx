@@ -146,10 +146,7 @@ export default function GeneratedImages({
             // Set the max iteration here, which will be the max on the last round of
             // looping the downward rendering.
             maxRenderIteration.current = numOfImages + 4;
-            // console.log(maxRenderIteration.current);
           } else {
-            // console.log("entered upward");
-
             // For the first up direction, set a state that will render a message at the bottom.
             setNumOfImages(numOfImages - 4);
             // This means if we get the the base amount of images, which is 8 (12 before the next click
@@ -160,14 +157,6 @@ export default function GeneratedImages({
               prevValue.current = numOfImages;
             }
           }
-
-          // // Check the max iteration value after every round of clicks.
-          // console.log(`Max iteration: ${maxRenderIteration.current}`);
-          // // Check that the prevValue maxes out at 60 when the button changes.
-          // console.log(`Prev Value: ${prevValue.current}`);
-          // // Check the numOfImages
-          // console.log(`Num Of Images: ${numOfImages}\n`);
-
           checkLimit(e);
         }}
       >
