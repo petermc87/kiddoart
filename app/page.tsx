@@ -137,6 +137,7 @@ export default function Home() {
             maxWidth: "1000px",
             minWidth: "200px",
             alignItems: "center",
+            padding: "0",
           }}
           className="mb-5"
         >
