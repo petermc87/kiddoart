@@ -30,6 +30,10 @@ export default function Home() {
     string | undefined | void | null
   >("");
 
+  // Set id. NOTE: We are separating out the URL, id etc so that an image can be rendered
+  // as the current image on ceration (this only genrates a URL).
+  const [id, setId] = useState<string | undefined | void | null>("");
+
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -151,7 +155,11 @@ export default function Home() {
           {currentImage ? (
             <>
               {/* Pass down the url, converted, imagePrompt */}
-              <ImageContainer url={currentImage} imagePrompt={imagePrompt} />
+              <ImageContainer
+                url={currentImage}
+                imagePrompt={imagePrompt}
+                id={id}
+              />
             </>
           ) : (
             <h5 color="gray">No image to display yet</h5>
@@ -172,6 +180,7 @@ export default function Home() {
           images={allImages}
           setPrompt={setImagePrompt}
           setImage={setCurrentImage}
+          setId={setId}
         />
       </Container>
       <Container style={{ textAlign: "center" }}>

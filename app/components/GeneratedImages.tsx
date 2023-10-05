@@ -7,12 +7,14 @@ type AllImagesProps = {
   images: ImageType[];
   setPrompt: Dispatch<SetStateAction<string | void | undefined>>;
   setImage: Dispatch<SetStateAction<string | void | null | undefined>>;
+  setId: Dispatch<SetStateAction<string | void | null | undefined>>;
 };
 
 export default function GeneratedImages({
   images,
   setImage,
   setPrompt,
+  setId,
 }: AllImagesProps) {
   // Create a state the stores the number of images to index.
   //  This will mean that it will only render 8 at a time. When the chevron at
@@ -30,10 +32,11 @@ export default function GeneratedImages({
   const maxRenderIteration = useRef(0);
 
   // Create a handler function for viewing the image selected.
-  const handleView = (url: string, prompt: string, e: any) => {
+  const handleView = (url: string, prompt: string, id: string, e: any) => {
     e.preventDefault();
     setImage(url);
     setPrompt(prompt);
+    setId(id);
   };
 
   // When the numOfImages ends up being greater than the images.length,
@@ -80,7 +83,9 @@ export default function GeneratedImages({
                       className="h-100"
                       id={styles.card}
                       style={{ boxShadow: "0 0 10px 1px rgb(202, 202, 202)" }}
-                      onClick={(e) => handleView(image.url, image.prompt, e)}
+                      onClick={(e) =>
+                        handleView(image.url, image.prompt, image.id, e)
+                      }
                     >
                       <Card.Body>
                         <Card.Title style={{ font: "cursive" }}>
