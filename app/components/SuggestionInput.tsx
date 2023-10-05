@@ -19,6 +19,8 @@ export default function SuggestionInput({ handleSubmit }: any) {
             textAlign: "center",
             color: " solid #d2a800",
             padding: "0.6rem",
+            // border: "solid yellow",
+            width: "100%",
           }}
           required
         />

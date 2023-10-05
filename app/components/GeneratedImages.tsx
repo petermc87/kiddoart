@@ -20,14 +20,32 @@ export default function GeneratedImages({
   //  rendering 8 + 8 + ...
   const [numOfImages, setNumOfImages] = useState(8);
 
+  // This is to activeate the max limit reached for image rendering.
+  const [limitMessage, setLimitMessage] = useState(false);
+
   // Create a useRef to get the previous value.
   const prevValue = useRef(0);
+
+  //Max render iteration.
+  const maxRenderIteration = useRef(0);
 
   // Create a handler function for viewing the image selected.
   const handleView = (url: string, prompt: string, e: any) => {
     e.preventDefault();
     setImage(url);
     setPrompt(prompt);
+  };
+
+  // When the numOfImages ends up being greater than the images.length,
+  // you can set the limit message to true.
+  const checkLimit = (e: any) => {
+    e.preventDefault();
+    if (images && maxRenderIteration.current > images.length) {
+      setLimitMessage(true);
+      maxRenderIteration.current = 0;
+    } else {
+      setLimitMessage(false);
+    }
   };
 
   return (
@@ -43,17 +61,20 @@ export default function GeneratedImages({
             className="g-4"
           >
             {images.map((image: any, i) => {
-              // Create a separate component for the image.
-              // To create the
-              // console.log(image);
+              // OBSERVATION: The length of the images object is 59, and the iteration for each image reveal is 4,
+              // so the max number the numOfImage will reach is 60. This is greater than 59,
+              // which is the total number of images in the list. This is why we need to use
+              // less than conditional rather than less than or equal to.
+              // If the current index (i) is less than or equal to the state
+              // value, then render to the screen.
+              // NOTE: There is no need to create a seperate component for this.
+              // This is because it is not being reused anywhere else.
               if (i < numOfImages) {
+                // TESTING IF ALL IMAGES ARE BEING RENDERED.
+                // console.log(
+                //   `Current Iteration: ${i}, Current Title: ${image.prompt}`
+                // );
                 return (
-                  // If the current index (i) is less than or equal to the state
-                  // value, then render to the screen.
-                  // NOTE: There is no need to create a seperate component for this.
-                  // This is because it is not being reused anywhere else.
-                  // FIX: it is showing the all the images bar the last one.
-                  // It starts off with 8, then increments by 4.
                   <Col key={image.url}>
                     <Card
                       className="h-100"
@@ -84,10 +105,19 @@ export default function GeneratedImages({
       ) : (
         ""
       )}
+      {/* // Message when the limit to the number of renderings is reached. */}
+      {limitMessage ? (
+        <div className={styles.limitMessage}>
+          You have reached the max limit of images to display. Please use the up
+          arrow to hide images.
+        </div>
+      ) : (
+        ""
+      )}
       {/* On click will add to the current state i.e. current state + 4 */}
       <div
         className={styles.chevronWrapper}
-        onClick={() => {
+        onClick={(e) => {
           // Use a conditional to check if the values are equal. Create another
           // state variable to change the direction of the picture reveal i.e
           // is it going in the negative direction or positive?
@@ -113,7 +143,14 @@ export default function GeneratedImages({
             prevValue.current = numOfImages;
             // Otherwise, we are removing images i.e. showing less
             // UP DIRECTION
+            // Set the max iteration here, which will be the max on the last round of
+            // looping the downward rendering.
+            maxRenderIteration.current = numOfImages + 4;
+            // console.log(maxRenderIteration.current);
           } else {
+            // console.log("entered upward");
+
+            // For the first up direction, set a state that will render a message at the bottom.
             setNumOfImages(numOfImages - 4);
             // This means if we get the the base amount of images, which is 8 (12 before the next click
             // shown in the line above, hence the 12 in the conditional below), the prevValue is reset
@@ -123,6 +160,15 @@ export default function GeneratedImages({
               prevValue.current = numOfImages;
             }
           }
+
+          // // Check the max iteration value after every round of clicks.
+          // console.log(`Max iteration: ${maxRenderIteration.current}`);
+          // // Check that the prevValue maxes out at 60 when the button changes.
+          // console.log(`Prev Value: ${prevValue.current}`);
+          // // Check the numOfImages
+          // console.log(`Num Of Images: ${numOfImages}\n`);
+
+          checkLimit(e);
         }}
       >
         {/* Use the same conditional logic as in the click funtion.*/}
@@ -131,7 +177,9 @@ export default function GeneratedImages({
         prevValue.current < numOfImages ? (
           <div className={styles.chevronDown}></div>
         ) : (
-          <div className={styles.chevronUp}></div>
+          <>
+            <div className={styles.chevronUp}></div>
+          </>
         )}
       </div>
     </>

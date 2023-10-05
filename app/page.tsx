@@ -98,7 +98,7 @@ export default function Home() {
   return (
     <main
       className={styles.main}
-      style={{ padding: "2rem", maxWidth: "100vw" }}
+      style={{ padding: "0 2rem 2rem 2rem", maxWidth: "100vw" }}
     >
       {/* Hero image, generated image and prompt container. */}
       <Container
@@ -107,6 +107,7 @@ export default function Home() {
           maxWidth: "1000px",
           minWidth: "200px",
           flexDirection: "column",
+          border: "solid red",
         }}
       >
         <Container
@@ -115,7 +116,9 @@ export default function Home() {
             maxWidth: "30rem",
             minHeight: "10rem",
             alignItems: "center",
+            border: "solid black",
           }}
+          className="mt-5"
         >
           <Logo />
         </Container>
@@ -125,6 +128,9 @@ export default function Home() {
           style={{
             textAlign: "center",
             maxWidth: "35rem",
+            // minWidth: "18rem",
+            border: "solid green",
+            padding: "0",
           }}
           className="mb-5"
         >
