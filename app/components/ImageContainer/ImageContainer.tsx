@@ -13,23 +13,24 @@ export default function ImageContainer({
   imagePrompt,
   id,
 }: ImageContainerTypes) {
-  // Convert url to key that gets passed into the donwload function.
-  const key: string = url.split("/")[3];
-  // Test retrieving an object from AWS S3 using AWS SDK.
-
-  // Creating a file name for the image to be downloaded without spaces.
-  const fileName = imagePrompt.split(" ").join("_");
-
   const downloadImage = async (e: any) => {
-    const response: any = await Download(key);
-
-    const convertedUrl = `data:image/jpeg;base64,${response}`;
-
+    // Creating a file name for the image to be downloaded without spaces.
+    const fileName = imagePrompt.split(" ").join("_");
     const link = document.createElement("a");
+    // If the url is a link to the bucket (i.e contains), then perform the next four
+    // variable storage ops. Otherwise skip to the rest of the steps.
+    if (url.includes("https://")) {
+      // Convert url to key that gets passed into the donwload function.
+      const key: string = url.split("/")[3];
+      const response: any = await Download(key);
 
-    link.href = convertedUrl;
+      const convertedUrl = `data:image/jpeg;base64,${response}`;
+
+      link.href = convertedUrl;
+    } else {
+      link.href = url;
+    }
     link.download = fileName;
-
     link.click();
   };
   return (
