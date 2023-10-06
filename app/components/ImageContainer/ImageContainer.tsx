@@ -19,7 +19,7 @@ export default function ImageContainer({
     const link = document.createElement("a");
     // If the url is a link to the bucket (i.e contains), then perform the next four
     // variable storage ops. Otherwise skip to the rest of the steps.
-    if (url.includes("kiddoart-images.s3")) {
+    if (url.includes("https://kiddoart-images.s3.amazonaws.com/")) {
       // Convert url to key that gets passed into the donwload function.
       const key: string = url.split("/")[3];
       const response: any = await Download(key);
