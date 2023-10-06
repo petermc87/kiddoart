@@ -19,7 +19,7 @@ export default function ImageContainer({
     const link = document.createElement("a");
     // If the url is a link to the bucket (i.e contains), then perform the next four
     // variable storage ops. Otherwise skip to the rest of the steps.
-    if (url.includes("https://")) {
+    if (url.includes("kiddoart-images.s3")) {
       // Convert url to key that gets passed into the donwload function.
       const key: string = url.split("/")[3];
       const response: any = await Download(key);
@@ -47,26 +47,25 @@ export default function ImageContainer({
           rounded
         />
       </div>
-      <a href="" target="_blank" rel="noopener noreferrer">
-        <div
-          className={styles.download}
-          onClick={(e) => {
-            downloadImage(e);
-          }}
+
+      <div
+        className={styles.download}
+        onClick={(e) => {
+          downloadImage(e);
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="#e0a738"
+          className="bi bi-download"
+          viewBox="0 0 16 16"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="#e0a738"
-            className="bi bi-download"
-            viewBox="0 0 16 16"
-          >
-            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-          </svg>
-        </div>
-      </a>
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+        </svg>
+      </div>
     </div>
   );
 }
