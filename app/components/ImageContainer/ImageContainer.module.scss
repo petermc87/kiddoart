@@ -16,3 +16,19 @@
 .image {
   box-shadow: var.$div-shodow;
 }
+.download {
+  // border: solid black;
+  padding: 1rem;
+  @extend %wideButtonStyles;
+}
+
+.download:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.download:focus {
+  cursor: pointer;
+  opacity: 0.6;
+  width: 90%;
+}

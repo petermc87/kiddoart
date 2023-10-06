@@ -1,18 +1,12 @@
 @use "../utilities/variables" as var;
-
+@use "../utilities/elements";
 .image {
   object-fit: cover;
   height: 100%;
 }
 
 .chevronWrapper {
-  justify-content: center;
-  display: flex;
-  padding: 0.8em 0.4rem 0.4rem 0.4rem;
-  margin-top: 1rem;
-  border-radius: 5px;
-  background-color: var.$very-light-blue;
-  box-shadow: var.$div-shodow;
+  @extend %wideButtonStyles;
 }
 .chevronWrapper:hover {
   opacity: 0.5;

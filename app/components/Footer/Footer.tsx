@@ -45,7 +45,6 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={iconSize}
@@ -86,7 +85,7 @@ export default function Footer() {
           rel="noopener noreferrer"
         >
           github
-        </a>{" "}
+        </a>
       </div>
       repo.
     </div>
