@@ -19,14 +19,17 @@ export default function ImageContainer({
     const link = document.createElement("a");
     // If the url is a link to the bucket (i.e contains), then perform the next four
     // variable storage ops. Otherwise skip to the rest of the steps.
-    // Convert url to key that gets passed into the donwload function.
-    const key: string = url.split("/")[3];
-    const response: any = await Download(key);
+    if (url.includes("https://kiddoart-images.s3.amazonaws.com/")) {
+      // Convert url to key that gets passed into the donwload function.
+      const key: string = url.split("/")[3];
+      const response: any = await Download(key);
 
-    const convertedUrl = `data:image/jpeg;base64,${response}`;
+      const convertedUrl = `data:image/jpeg;base64,${response}`;
 
-    link.href = convertedUrl;
-
+      link.href = convertedUrl;
+    } else {
+      link.href = url;
+    }
     link.download = fileName;
     link.click();
   };
@@ -66,24 +69,3 @@ export default function ImageContainer({
     </div>
   );
 }
-// WITH CONDITIONAL.
-// const downloadImage = async (e: any) => {
-//   // Creating a file name for the image to be downloaded without spaces.
-//   const fileName = imagePrompt.split(" ").join("_");
-//   const link = document.createElement("a");
-//   // If the url is a link to the bucket (i.e contains), then perform the next four
-//   // variable storage ops. Otherwise skip to the rest of the steps.
-//   if (url.includes("https://kiddoart-images.s3.amazonaws.com/")) {
-//     // Convert url to key that gets passed into the donwload function.
-//     const key: string = url.split("/")[3];
-//     const response: any = await Download(key);
-
-//     const convertedUrl = `data:image/jpeg;base64,${response}`;
-
-//     link.href = convertedUrl;
-//   } else {
-//     link.href = url;
-//   }
-//   link.download = fileName;
-//   link.click();
-// };
