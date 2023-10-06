@@ -1,3 +1,4 @@
+import Download from "@/actions/downloadImage";
 import { Image } from "react-bootstrap";
 import styles from "./ImageContainer.module.scss";
 
@@ -12,20 +13,24 @@ export default function ImageContainer({
   imagePrompt,
   id,
 }: ImageContainerTypes) {
-  const downloadImage = async (e: any, callback: any) => {
-    if (id) {
-      var xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-        var reader = new FileReader();
-        reader.onloadend = function () {
-          callback(reader.result);
-        };
-        reader.readAsDataURL(xhr.response);
-      };
-      xhr.open("GET", url);
-      xhr.responseType = "blob";
-      xhr.send();
-    }
+  // Convert url to key that gets passed into the donwload function.
+  const key: string = url.split("/")[3];
+  // Test retrieving an object from AWS S3 using AWS SDK.
+
+  // Creating a file name for the image to be downloaded without spaces.
+  const fileName = imagePrompt.split(" ").join("_");
+
+  const downloadImage = async (e: any) => {
+    const response: any = await Download(key);
+
+    const convertedUrl = `data:image/jpeg;base64,${response}`;
+
+    const link = document.createElement("a");
+
+    link.href = convertedUrl;
+    link.download = fileName;
+
+    link.click();
   };
   return (
     <div className={styles.currentImageWrapper}>
@@ -43,9 +48,7 @@ export default function ImageContainer({
       </div>
       <div
         onClick={(e) => {
-          downloadImage(e, function (myBase64: any) {
-            console.log(myBase64);
-          });
+          downloadImage(e);
         }}
       >
         Download
@@ -195,5 +198,42 @@ export default function ImageContainer({
 //     a.click();
 //     URL.revokeObjectURL(href);
 //     a.remove();
+//   }
+// };
+
+// ANOTHER EXAMPLE.
+// const downloadImage = async (e: any, callback: any) => {
+//   let response;
+//   if (id) {
+//     var xhr = new XMLHttpRequest();
+//     xhr.onload = function () {
+//       var reader = new FileReader();
+//       reader.onloadend = function () {
+//         callback(reader.result);
+//       };
+//       reader.readAsDataURL(xhr.response);
+//     };
+//     xhr.open("GET", {
+//       await Download(id)
+//     });
+//     xhr.responseType = "blob";
+//     xhr.send();
+//   }
+
+// FROM: Sources on GitHub
+// const downloadImage = async (e: any) => {
+//   try {
+//     const newdata = await Download();
+
+//     const url = window.URL.createObjectURL(new Blob([newdata]));
+//     console.log(url);
+//     const a = document.createElement("a");
+//     a.href = url;
+//     a.download = "image.jpeg";
+//     document.body.appendChild(a);
+//     a.click();
+//     document.body.removeChild(a);
+//   } catch (error) {
+//     console.error(error);
 //   }
 // };

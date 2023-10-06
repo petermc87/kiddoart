@@ -50,3 +50,9 @@ Follow the live link to the application [here](https://kiddoart.vercel.app/)
 5.  [Wireframes](https://lucid.app/lucidchart/0d1b57af-04a3-43fa-8717-03812278a9fb/edit?viewport_loc=-234%2C-934%2C3336%2C3558%2C0_0&invitationId=inv_4f9a9ecd-5788-4f28-99b5-6992b22aa47f)
 
 6.  [Color Palette](https://coolors.co/668586-82aeb1-57ad5a-a7acd9-9e8fb2)
+
+7.  [AWS SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/)
+
+8.  [GetObjectCommand](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/s3/command/GetObjectCommand/)
+
+9.  [GetObjectCommand - Example](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example_s3_GetObject_section.html)
