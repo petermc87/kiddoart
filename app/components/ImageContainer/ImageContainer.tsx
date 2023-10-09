@@ -1,5 +1,5 @@
 import Download from "@/actions/downloadImage";
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 import { Image } from "react-bootstrap";
 import styles from "./ImageContainer.module.scss";
 
@@ -7,12 +7,13 @@ type ImageContainerTypes = {
   url: any;
   imagePrompt: any;
   id: any;
+  imageRef: MutableRefObject<null>;
 };
 
 export default function ImageContainer({
   url,
   imagePrompt,
-  id,
+  imageRef,
 }: ImageContainerTypes) {
   //State variable that shows either show its downlaoding within the button container.
   const [downloading, setDownloading] = useState(false);
@@ -43,7 +44,8 @@ export default function ImageContainer({
     setDownloading(false);
   };
   return (
-    <div className={styles.currentImageWrapper}>
+    // Create a reference here for when an image is clicked.
+    <div className={styles.currentImageWrapper} ref={imageRef}>
       <h4 className={styles.heading}>Current Image</h4>
       <strong>Prompt: </strong>
       {imagePrompt}

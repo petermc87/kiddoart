@@ -4,7 +4,13 @@ import createImage from "@/actions/generatorApi";
 import getAllImages from "@/actions/getAllImagesApi";
 import { Generate } from "@/models/GeneratedImage";
 import { ImageType } from "@/models/typings";
-import { FormEvent, useEffect, useState } from "react";
+import {
+  FormEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Container, Spinner } from "react-bootstrap";
 import Footer from "./components/Footer/Footer";
 import GeneratedImages from "./components/GeneratedImages";
@@ -14,10 +20,13 @@ import SuggestionInput from "./components/SuggestionInput";
 import styles from "./page.module.scss";
 
 export default function Home() {
+  // Reference for image container.
+  const imageRef = useRef(null);
+
   // Spinner state for generating image.
   const [creating, setCreating] = useState(false);
 
-  // 1. Create a state variable for all images here.
+  //Create a state variable for all images here.
   const [allImages, setAllImages] = useState<ImageType[] | void | null | any>(
     null
   );
@@ -33,6 +42,13 @@ export default function Home() {
   // Set id. NOTE: We are separating out the URL, id etc so that an image can be rendered
   // as the current image on ceration (this only genrates a URL).
   const [id, setId] = useState<string | undefined | void | null>("");
+
+  // The scroll into view used to view the image selected in the current image container.
+  // NOTE: The ref useRef object is passed in here from the image selected rather
+  // than from this page so that types could be maintained.
+  const refHandleClick = (reference: MutableRefObject<null | any>) => {
+    reference.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   // Event handler to fetch generated URLs.
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -145,7 +161,7 @@ export default function Home() {
           }}
           className="mb-5"
         >
-          {/* Spinner will be active when it is searching */}
+          {/* Spinner will be active when it is creating*/}
           {creating && (
             <Spinner
               animation="border"
@@ -154,11 +170,13 @@ export default function Home() {
           )}
           {currentImage ? (
             <>
+              {/* CURRENT IMAGE CONTAINER */}
               {/* Pass down the url, converted, imagePrompt */}
               <ImageContainer
                 url={currentImage}
                 imagePrompt={imagePrompt}
                 id={id}
+                imageRef={imageRef}
               />
             </>
           ) : (
@@ -176,11 +194,14 @@ export default function Home() {
       >
         <h3 className={styles.heading}>Choose from Previously Generated</h3>
         <br />
+        {/* Pass down the imageRef and the click handler for the scroll into view. */}
         <GeneratedImages
           images={allImages}
           setPrompt={setImagePrompt}
           setImage={setCurrentImage}
           setId={setId}
+          refHandleClick={refHandleClick}
+          reference={imageRef}
         />
       </Container>
       <Container style={{ textAlign: "center" }}>

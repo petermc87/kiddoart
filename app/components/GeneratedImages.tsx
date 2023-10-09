@@ -1,5 +1,11 @@
 import { ImageType } from "@/models/typings";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import {
+  Dispatch,
+  MutableRefObject,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
 import { Card, Col, Image, Row } from "react-bootstrap";
 import styles from "./GeneratedImages.module.scss";
 
@@ -8,6 +14,8 @@ type AllImagesProps = {
   setPrompt: Dispatch<SetStateAction<string | void | undefined>>;
   setImage: Dispatch<SetStateAction<string | void | null | undefined>>;
   setId: Dispatch<SetStateAction<string | void | null | undefined>>;
+  refHandleClick: (imageRef: MutableRefObject<null | any>) => void;
+  reference: MutableRefObject<null>;
 };
 
 export default function GeneratedImages({
@@ -15,6 +23,8 @@ export default function GeneratedImages({
   setImage,
   setPrompt,
   setId,
+  refHandleClick,
+  reference,
 }: AllImagesProps) {
   // Create a state the stores the number of images to index.
   //  This will mean that it will only render 8 at a time. When the chevron at
@@ -83,9 +93,10 @@ export default function GeneratedImages({
                       className="h-100"
                       id={styles.card}
                       style={{ boxShadow: "0 0 10px 1px rgb(202, 202, 202)" }}
-                      onClick={(e) =>
-                        handleView(image.url, image.prompt, image.id, e)
-                      }
+                      onClick={(e) => {
+                        handleView(image.url, image.prompt, image.id, e);
+                        refHandleClick(reference);
+                      }}
                     >
                       <Card.Body>
                         <Card.Title style={{ font: "cursive" }}>
@@ -126,13 +137,6 @@ export default function GeneratedImages({
           // Use a conditional to check if the values are equal. Create another
           // state variable to change the direction of the picture reveal i.e
           // is it going in the negative direction or positive?
-          //
-          // TESTING THE IMAGE RENDERING ON CLICK.
-          // console.log(
-          //   `Previous Val: ${prevValue.current}\n
-          //   Number of Images: ${numOfImages}\n
-          //   Length Of Images: ${images.length}`
-          // );
 
           // If the length of the images.length array is greater than the numOfImages,
           // and the previous value is less (incrementing down) then the number of images,
