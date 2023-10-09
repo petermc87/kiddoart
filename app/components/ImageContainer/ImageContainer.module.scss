@@ -17,7 +17,6 @@
   box-shadow: var.$div-shodow;
 }
 .download {
-  // border: solid black;
   padding: 1rem;
   @extend %wideButtonStyles;
 }
@@ -31,4 +30,69 @@
   cursor: pointer;
   opacity: 0.6;
   width: 90%;
+}
+
+/**
+ * ==============================================
+ * Dot Flashing
+ * ==============================================
+ */
+.downloadingWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .text {
+    margin-right: 2rem;
+    color: var.$dark-gold;
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+}
+.dotFlashing {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var.$dark-gold;
+  color: var.$dark-gold;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+.dotFlashing::before,
+.dotFlashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.dotFlashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var.$dark-gold;
+  color: var.$dark-gold;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+.dotFlashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var.$dark-gold;
+  color: var.$dark-gold;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: var.$dark-gold;
+  }
+  50%,
+  100% {
+    background-color: rgba(194, 142, 56, 0.2);
+  }
 }
