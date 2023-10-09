@@ -56,3 +56,9 @@ Follow the live link to the application [here](https://kiddoart.vercel.app/)
 8.  [GetObjectCommand](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/s3/command/GetObjectCommand/)
 
 9.  [GetObjectCommand - Example](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example_s3_GetObject_section.html)
+
+10. [S3 GetObject](https://github.com/aws/aws-sdk-js-v3/issues/1877)
+
+11. [Permissions Access](https://stackoverflow.com/questions/39620873/why-is-my-access-denied-on-s3-using-the-aws-sdk-for-node-js)
+
+12. [Viewing Errors in Vercel Discussion](https://www.reddit.com/r/nextjs/comments/j4i5c1/500_internal_server_error_on_vercel_deploy_how_to/)
