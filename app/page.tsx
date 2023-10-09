@@ -89,7 +89,7 @@ export default function Home() {
           setTimeout(() => {
             setCreating(false);
             setCurrentImage(convertedUrl);
-          }, 4000);
+          }, 11000);
         }
       } catch (error) {
         console.error(error);
