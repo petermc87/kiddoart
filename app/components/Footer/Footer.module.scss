@@ -7,9 +7,23 @@
   margin-bottom: 2rem;
   a {
     color: var.$dark-blue;
+    text-shadow: var.$text-shad;
   }
   a:hover {
     opacity: 0.5;
+  }
+  #facebook {
+    color: var.$bright-gold;
+    text-shadow: var.$div-shodow;
+  }
+  #git {
+    color: var.$red;
+  }
+  #linkedin {
+    color: var.$green;
+  }
+  #insta {
+    color: var.$violet;
   }
 }
 
