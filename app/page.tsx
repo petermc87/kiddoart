@@ -183,7 +183,10 @@ export default function Home() {
               />
             </>
           ) : (
-            <h5 color="gray">No image to display yet</h5>
+            <h5 style={{ color: "gray" }}>
+              No image to display yet (Please wait 15 seconds for image to
+              generate)
+            </h5>
           )}
         </Container>
       </Container>
