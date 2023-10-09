@@ -62,3 +62,5 @@ Follow the live link to the application [here](https://kiddoart.vercel.app/)
 11. [Permissions Access](https://stackoverflow.com/questions/39620873/why-is-my-access-denied-on-s3-using-the-aws-sdk-for-node-js)
 
 12. [Viewing Errors in Vercel Discussion](https://www.reddit.com/r/nextjs/comments/j4i5c1/500_internal_server_error_on_vercel_deploy_how_to/)
+
+13. [Three Dots for Download](https://nzbin.github.io/three-dots/)

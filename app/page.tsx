@@ -66,7 +66,6 @@ export default function Home() {
         setCurrentImage(null);
         setCreating(true);
         const results = await createImage(urlQuery);
-        setCreating(false);
 
         // Set the urls to Generate type, then pull out the url.
         const arrayData: Generate[] | void | null = results;
@@ -78,16 +77,20 @@ export default function Home() {
           const imageData: string | undefined | void = arrayData[0].b64_json;
           // Convert it to a JPEG.
           const convertedUrl = `data:image/jpeg;base64,${imageData}`;
+
+          // Make another call to the database for all the images again.
+          const images = await getAllImages();
+          setAllImages(images);
+
           // TASK: Add a set timeout function here to set the url but only if its a new
           // image being generated. A hook could be used to determine which one it is.
           // The hook can be declared here, assigned in GeneratedImages (false), and
           // in SuggestionsInput (false).
-          setCurrentImage(convertedUrl);
+          setTimeout(() => {
+            setCreating(false);
+            setCurrentImage(convertedUrl);
+          }, 4000);
         }
-
-        // Make another call to the database for all the images again.
-        const images = await getAllImages();
-        setAllImages(images);
       } catch (error) {
         console.error(error);
       }
