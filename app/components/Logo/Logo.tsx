@@ -1,10 +1,10 @@
-import { Container, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 import styles from "./Logo.module.scss";
 
 export default function Logo() {
   return (
-    <Container
+    <div
       style={{
         textAlign: "center",
         justifyContent: "center",
@@ -25,6 +25,6 @@ export default function Logo() {
         <span id={styles.r}>R</span>
         <span id={styles.t}>T</span>
       </h1>
-    </Container>
+    </div>
   );
 }

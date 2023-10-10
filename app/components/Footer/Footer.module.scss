@@ -38,3 +38,10 @@
     // border: solid red($color: #000000);
   }
 }
+
+@media only screen and (min-width: 1px) {
+  #container {
+    // style rules here.
+    width: 100%;
+  }
+}

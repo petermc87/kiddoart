@@ -1,11 +1,11 @@
-import { Container, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
   const iconSize = "60";
   return (
     <div className={styles.footerWrapper}>
-      <Container
+      <div
         style={{
           // borderTop: "solid #c28e38",
           background: "linear-gradient(to bottom, #e0a738, #0000)",
@@ -22,7 +22,7 @@ export default function Footer() {
           style={{ textAlign: "center", maxWidth: "4rem", minHeight: "4rem" }}
           src="https://kiddoart-images.s3.amazonaws.com/Screenshot+from+2023-10-02+10-45-49.png"
         />
-      </Container>
+      </div>
       <div className={styles.iconContainer}>
         <a
           href="https://www.facebook.com/peter.mcgibney.3"

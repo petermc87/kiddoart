@@ -210,9 +210,9 @@ export default function Home() {
           reference={imageRef}
         />
       </Container>
-      <Container style={{ textAlign: "center", padding: "0" }}>
+      <div style={{ textAlign: "center", padding: "0", width: "100%" }}>
         <Footer />
-      </Container>
+      </div>
     </main>
   );
 }
