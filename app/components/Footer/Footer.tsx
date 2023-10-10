@@ -1,9 +1,28 @@
+import { Container, Image } from "react-bootstrap";
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
   const iconSize = "60";
   return (
     <div className={styles.footerWrapper}>
+      <Container
+        style={{
+          // borderTop: "solid #c28e38",
+          background: "linear-gradient(to bottom, #e0a738, #0000)",
+          borderWidth: "0.5px",
+          paddingTop: "5rem",
+          textAlign: "center",
+          justifyContent: "center",
+          marginBottom: "4rem",
+          // maxWidth: "100%",
+        }}
+        id={styles.container}
+      >
+        <Image
+          style={{ textAlign: "center", maxWidth: "4rem", minHeight: "4rem" }}
+          src="https://kiddoart-images.s3.amazonaws.com/Screenshot+from+2023-10-02+10-45-49.png"
+        />
+      </Container>
       <div className={styles.iconContainer}>
         <a
           href="https://www.facebook.com/peter.mcgibney.3"
@@ -81,7 +100,7 @@ export default function Footer() {
       </div>
       <br />
       <div>
-        Created by peter with ❤️, check out the{" "}
+        Created by peter with ❤️, check out the
         <a
           href="https://github.com/petermc87/kiddoart"
           target="_blank"

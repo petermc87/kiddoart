@@ -29,6 +29,12 @@
 
 .footerWrapper {
   left: 0;
-  padding: 0;
+  padding: 0 auto;
   padding-top: 5rem;
+
+  #container {
+    padding-top: 2rem;
+
+    // border: solid red($color: #000000);
+  }
 }
